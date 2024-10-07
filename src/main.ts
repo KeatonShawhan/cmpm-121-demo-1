@@ -26,11 +26,11 @@ button.addEventListener("click", function () {
   counter.innerHTML = "Money Faces: " + amount.toString();
 });
 
-let lastFrameTime = performance.now();
+const lastFrameTime = performance.now();
 
 setInterval(autoClick, lastFrameTime);
 
 function autoClick() {
-  amount += 1/(1000/lastFrameTime);
+  amount += 1 / (1000 / lastFrameTime);
   counter.innerHTML = "Money Faces: " + amount.toString();
 }

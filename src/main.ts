@@ -49,7 +49,7 @@ buyUpgrade.disabled = true;
 app.append(buyUpgrade);
 
 function updateAutoDisable() {
-    buyUpgrade.disabled = amount >= 10 ? false : true;
+  buyUpgrade.disabled = amount >= 10 ? false : true;
 }
 
 buyUpgrade.addEventListener("click", function () {

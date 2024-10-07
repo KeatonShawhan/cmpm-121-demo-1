@@ -21,7 +21,7 @@ const counter = document.createElement("div");
 counter.innerHTML = "Money Faces: " + amount.toString();
 app.append(counter);
 
-button.addEventListener("click", function (event) {
-    amount += 1
-    counter.innerHTML = "Money Faces: " + amount.toString();
-})
+button.addEventListener("click", function () {
+  amount += 1;
+  counter.innerHTML = "Money Faces: " + amount.toString();
+});

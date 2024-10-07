@@ -21,16 +21,40 @@ const counter = document.createElement("div");
 counter.innerHTML = "Money Faces: " + amount.toString();
 app.append(counter);
 
+function updateAmount() {
+  counter.innerHTML = "Money Faces: " + amount.toString();
+}
+
 button.addEventListener("click", function () {
   amount += 1;
-  counter.innerHTML = "Money Faces: " + amount.toString();
+  updateAmount();
+  updateAutoDisable();
 });
 
 const lastFrameTime = performance.now();
 
-setInterval(autoClick, lastFrameTime);
+let autoClickUpgrades = 0;
 
-function autoClick() {
-  amount += 1 / (1000 / lastFrameTime);
-  counter.innerHTML = "Money Faces: " + amount.toString();
+setInterval(() => autoClick(autoClickUpgrades), lastFrameTime);
+
+function autoClick(upgrades: number) {
+  amount += upgrades / (1000 / lastFrameTime);
+  updateAmount();
+  updateAutoDisable();
 }
+
+const buyUpgrade = document.createElement("button");
+buyUpgrade.innerHTML = "Buy 1 passive click (10 Money Faces)";
+buyUpgrade.disabled = true;
+app.append(buyUpgrade);
+
+function updateAutoDisable() {
+    buyUpgrade.disabled = amount >= 10 ? false : true;
+}
+
+buyUpgrade.addEventListener("click", function () {
+  amount -= 10;
+  autoClickUpgrades += 1;
+  updateAmount();
+  updateAutoDisable();
+});

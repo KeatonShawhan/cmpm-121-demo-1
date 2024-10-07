@@ -29,6 +29,6 @@ button.addEventListener("click", function () {
 setInterval(autoClick, 1000);
 
 function autoClick() {
-    amount += 1
-    counter.innerHTML = "Money Faces: " + amount.toString();
+  amount += 1;
+  counter.innerHTML = "Money Faces: " + amount.toString();
 }

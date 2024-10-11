@@ -18,11 +18,41 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "Baby", cost: 10, rate: 0.1, emoji: "👶", description: "Goo goo, ga ga" },
-  { name: "Toddler", cost: 100, rate: 2, emoji: "👦", description: "A toddler speaking their first words" },
-  { name: "Adult", cost: 1000, rate: 50, emoji: "🧑", "description": "A full grown member of society" },
-  { name: "Parent", cost: 5000, rate: 100, emoji: "🧑‍🍼", "description": "A loving parent with their own children" },
-  { name: "Family", cost: 20000, rate: 250, emoji: "👩‍👩‍👦‍👦", "description": "An entire family full of different generations" },
+  {
+    name: "Baby",
+    cost: 10,
+    rate: 0.1,
+    emoji: "👶",
+    description: "Goo goo, ga ga",
+  },
+  {
+    name: "Toddler",
+    cost: 100,
+    rate: 2,
+    emoji: "👦",
+    description: "A toddler speaking their first words",
+  },
+  {
+    name: "Adult",
+    cost: 1000,
+    rate: 50,
+    emoji: "🧑",
+    description: "A full grown member of society",
+  },
+  {
+    name: "Parent",
+    cost: 5000,
+    rate: 100,
+    emoji: "🧑‍🍼",
+    description: "A loving parent with their own children",
+  },
+  {
+    name: "Family",
+    cost: 20000,
+    rate: 250,
+    emoji: "👩‍👩‍👦‍👦",
+    description: "An entire family full of different generations",
+  },
 ];
 
 const upgradeCounts: { [key: string]: number } = {

@@ -53,13 +53,19 @@ function updatePassiveFaces() {
   passiveFaces.innerHTML =
     autoClickUpgrades.toString() + " Money Faces Per Second";
   buySmallUpgrade.innerHTML =
-  "Buy 0.1 passive clicks (" + smallUpgradePrice.toString() + " Money Faces)\nPurchased: " +
+    "Buy 0.1 passive clicks (" +
+    smallUpgradePrice.toString() +
+    " Money Faces)\nPurchased: " +
     smallUpgradeCount.toString();
   buyMediumUpgrade.innerHTML =
-  "Buy 2 passive clicks (" + mediumUpgradePrice.toString() + " Money Faces)\nPurchased: " +
+    "Buy 2 passive clicks (" +
+    mediumUpgradePrice.toString() +
+    " Money Faces)\nPurchased: " +
     mediumUpgradeCount.toString();
   buyBigUpgrade.innerHTML =
-  "Buy 50 passive clicks (" + bigUpgradePrice.toString() + " Money Faces)\nPurchased: " +
+    "Buy 50 passive clicks (" +
+    bigUpgradePrice.toString() +
+    " Money Faces)\nPurchased: " +
     bigUpgradeCount.toString();
 }
 
@@ -67,8 +73,10 @@ const buySmallUpgrade = document.createElement("button");
 let smallUpgradeCount = 0;
 let smallUpgradePrice = 10;
 buySmallUpgrade.innerHTML =
-  "Buy 0.1 passive clicks (" + smallUpgradePrice.toString() + " Money Faces)\nPurchased: " +
-smallUpgradeCount.toString();
+  "Buy 0.1 passive clicks (" +
+  smallUpgradePrice.toString() +
+  " Money Faces)\nPurchased: " +
+  smallUpgradeCount.toString();
 buySmallUpgrade.style.maxWidth = "200px";
 buySmallUpgrade.disabled = true;
 app.append(buySmallUpgrade);
@@ -93,8 +101,10 @@ const buyMediumUpgrade = document.createElement("button");
 let mediumUpgradeCount = 0;
 let mediumUpgradePrice = 100;
 buyMediumUpgrade.innerHTML =
-  "Buy 2 passive clicks (" + mediumUpgradePrice.toString() + " Money Faces)\nPurchased: " +
-mediumUpgradeCount.toString();
+  "Buy 2 passive clicks (" +
+  mediumUpgradePrice.toString() +
+  " Money Faces)\nPurchased: " +
+  mediumUpgradeCount.toString();
 buyMediumUpgrade.style.maxWidth = "200px";
 buyMediumUpgrade.disabled = true;
 app.append(buyMediumUpgrade);
@@ -113,7 +123,9 @@ const buyBigUpgrade = document.createElement("button");
 let bigUpgradeCount = 0;
 let bigUpgradePrice = 1000;
 buyBigUpgrade.innerHTML =
-  "Buy 50 passive clicks (" + bigUpgradePrice.toString() + " Money Faces)\nPurchased: " +
+  "Buy 50 passive clicks (" +
+  bigUpgradePrice.toString() +
+  " Money Faces)\nPurchased: " +
   bigUpgradeCount.toString();
 buyBigUpgrade.style.maxWidth = "200px";
 buyBigUpgrade.disabled = true;

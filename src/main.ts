@@ -14,18 +14,23 @@ interface Item {
   cost: number;
   rate: number;
   emoji: string;
+  description: string;
 }
 
 const availableItems: Item[] = [
-  { name: "Baby", cost: 10, rate: 0.1, emoji: "👶" },
-  { name: "Toddler", cost: 100, rate: 2, emoji: "👦" },
-  { name: "Man", cost: 1000, rate: 50, emoji: "👨" },
+  { name: "Baby", cost: 10, rate: 0.1, emoji: "👶", description: "Goo goo, ga ga" },
+  { name: "Toddler", cost: 100, rate: 2, emoji: "👦", description: "A toddler speaking their first words" },
+  { name: "Adult", cost: 1000, rate: 50, emoji: "🧑", "description": "A full grown member of society" },
+  { name: "Parent", cost: 5000, rate: 100, emoji: "🧑‍🍼", "description": "A loving parent with their own children" },
+  { name: "Family", cost: 20000, rate: 250, emoji: "👩‍👩‍👦‍👦", "description": "An entire family full of different generations" },
 ];
 
 const upgradeCounts: { [key: string]: number } = {
   Baby: 0,
   Toddler: 0,
-  Man: 0,
+  Adult: 0,
+  Parent: 0,
+  Family: 0,
 };
 
 const buttons: { [key: string]: HTMLButtonElement } = {};
@@ -91,9 +96,9 @@ availableItems.forEach((item) => {
   tooltip.style.color = "white";
   tooltip.style.padding = "5px";
   tooltip.style.borderRadius = "5px";
-  tooltip.style.maxWidth = "200px";
+  tooltip.style.maxWidth = "400px";
 
-  tooltip.innerHTML = `Buy ${item.rate} passive People (Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}`;
+  tooltip.innerHTML = `Buy ${item.rate} passive People<br>(Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}<br><br>"${item.description}"`;
 
   buyUpgradeButton.addEventListener("mouseover", (event) => {
     tooltip.style.visibility = "visible";
@@ -109,7 +114,7 @@ availableItems.forEach((item) => {
     upgradeCounts[item.name]++;
     autoClickUpgrades += item.rate;
     amount -= item.cost; // Deduct the cost from the amount
-    tooltip.innerHTML = `Buy ${item.rate} passive People (Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}`;
+    tooltip.innerHTML = `Buy ${item.rate} passive People<br>(Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}<br><br>"${item.description}"`;
   });
   buttons[item.name] = buyUpgradeButton;
 

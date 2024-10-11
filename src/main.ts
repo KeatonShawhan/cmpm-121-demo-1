@@ -36,7 +36,8 @@ const lastFrameTime = performance.now();
 
 let autoClickUpgrades = 0;
 const passiveFaces = document.createElement("div");
-passiveFaces.innerHTML = autoClickUpgrades.toString() + " Money Faces Per Second";
+passiveFaces.innerHTML =
+  autoClickUpgrades.toString() + " Money Faces Per Second";
 app.append(passiveFaces);
 
 setInterval(() => autoClick(autoClickUpgrades), lastFrameTime);
@@ -49,15 +50,24 @@ function autoClick(upgrades: number) {
 }
 
 function updatePassiveFaces() {
-  passiveFaces.innerHTML = autoClickUpgrades.toString() + " Money Faces Per Second";
-  buySmallUpgrade.innerHTML = "Buy 0.1 passive clicks (10 Money Faces)\nPurchased: " + smallUpgradeCount.toString();
-  buyMediumUpgrade.innerHTML = "Buy 2 passive clicks (100 Money Faces)\nPurchased: " + mediumUpgradeCount.toString();
-  buyBigUpgrade.innerHTML = "Buy 50 passive clicks (1000 Money Faces)\nPurchased: " + bigUpgradeCount.toString();
+  passiveFaces.innerHTML =
+    autoClickUpgrades.toString() + " Money Faces Per Second";
+  buySmallUpgrade.innerHTML =
+    "Buy 0.1 passive clicks (10 Money Faces)\nPurchased: " +
+    smallUpgradeCount.toString();
+  buyMediumUpgrade.innerHTML =
+    "Buy 2 passive clicks (100 Money Faces)\nPurchased: " +
+    mediumUpgradeCount.toString();
+  buyBigUpgrade.innerHTML =
+    "Buy 50 passive clicks (1000 Money Faces)\nPurchased: " +
+    bigUpgradeCount.toString();
 }
 
 const buySmallUpgrade = document.createElement("button");
 let smallUpgradeCount = 0;
-buySmallUpgrade.innerHTML = "Buy 0.1 passive clicks (10 Money Faces)\nPurchased: " + smallUpgradeCount.toString();
+buySmallUpgrade.innerHTML =
+  "Buy 0.1 passive clicks (10 Money Faces)\nPurchased: " +
+  smallUpgradeCount.toString();
 buySmallUpgrade.style.maxWidth = "200px";
 buySmallUpgrade.disabled = true;
 app.append(buySmallUpgrade);
@@ -79,7 +89,9 @@ buySmallUpgrade.addEventListener("click", function () {
 
 const buyMediumUpgrade = document.createElement("button");
 let mediumUpgradeCount = 0;
-buyMediumUpgrade.innerHTML = "Buy 2 passive clicks (100 Money Faces)\nPurchased: " + mediumUpgradeCount.toString();
+buyMediumUpgrade.innerHTML =
+  "Buy 2 passive clicks (100 Money Faces)\nPurchased: " +
+  mediumUpgradeCount.toString();
 buyMediumUpgrade.style.maxWidth = "200px";
 buyMediumUpgrade.disabled = true;
 app.append(buyMediumUpgrade);
@@ -95,7 +107,9 @@ buyMediumUpgrade.addEventListener("click", function () {
 
 const buyBigUpgrade = document.createElement("button");
 let bigUpgradeCount = 0;
-buyBigUpgrade.innerHTML = "Buy 50 passive clicks (1000 Money Faces)\nPurchased: " + bigUpgradeCount.toString();
+buyBigUpgrade.innerHTML =
+  "Buy 50 passive clicks (1000 Money Faces)\nPurchased: " +
+  bigUpgradeCount.toString();
 buyBigUpgrade.style.maxWidth = "200px";
 buyBigUpgrade.disabled = true;
 app.append(buyBigUpgrade);
@@ -108,4 +122,3 @@ buyBigUpgrade.addEventListener("click", function () {
   updateAutoDisable();
   updatePassiveFaces();
 });
-

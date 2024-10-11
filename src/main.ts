@@ -10,25 +10,25 @@ header.innerHTML = gameName;
 app.append(header);
 
 interface Item {
-  name: string,
-  cost: number,
-  rate: number,
-  emoji: string
-};
+  name: string;
+  cost: number;
+  rate: number;
+  emoji: string;
+}
 
-const availableItems : Item[] = [
-  {name: "Baby", cost: 10, rate: 0.1, emoji: "👶"},
-  {name: "Toddler", cost: 100, rate: 2, emoji: "👦"},
-  {name: "Man", cost: 1000, rate: 50, emoji: "👨"},
+const availableItems: Item[] = [
+  { name: "Baby", cost: 10, rate: 0.1, emoji: "👶" },
+  { name: "Toddler", cost: 100, rate: 2, emoji: "👦" },
+  { name: "Man", cost: 1000, rate: 50, emoji: "👨" },
 ];
 
-const upgradeCounts: {[key: string]: number} = {
+const upgradeCounts: { [key: string]: number } = {
   Baby: 0,
   Toddler: 0,
   Man: 0,
 };
 
-const buttons: {[key: string]: HTMLButtonElement} = {};
+const buttons: { [key: string]: HTMLButtonElement } = {};
 
 const button = document.createElement("button");
 button.innerHTML = "👤";
@@ -92,9 +92,9 @@ availableItems.forEach((item) => {
   tooltip.style.padding = "5px";
   tooltip.style.borderRadius = "5px";
   tooltip.style.maxWidth = "200px";
-  
+
   tooltip.innerHTML = `Buy ${item.rate} passive People (Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}`;
-  
+
   buyUpgradeButton.addEventListener("mouseover", (event) => {
     tooltip.style.visibility = "visible";
     tooltip.style.left = event.pageX + 10 + "px";

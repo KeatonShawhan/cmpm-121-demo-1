@@ -37,8 +37,7 @@ const lastFrameTime = performance.now();
 
 let autoClickUpgrades = 0;
 const passivePeople = document.createElement("div");
-passivePeople.innerHTML =
-  "per Second: " + autoClickUpgrades.toString();
+passivePeople.innerHTML = "per Second: " + autoClickUpgrades.toString();
 passivePeople.style.fontSize = "16px";
 passivePeople.style.marginBottom = "10px";
 app.append(passivePeople);
@@ -53,28 +52,27 @@ function autoClick(upgrades: number) {
 }
 
 function updatePassivePeople() {
-  passivePeople.innerHTML =
-    "per Second: " + autoClickUpgrades.toString();
+  passivePeople.innerHTML = "per Second: " + autoClickUpgrades.toString();
 
   passivePeople.style.fontSize = "12px";
 
   tooltip.innerHTML =
-  "0.1 passive People (Cost: " +
-  smallUpgradePrice.toString() +
-  " People)<br>Purchased: " +
-  smallUpgradeCount.toString();
+    "0.1 passive People (Cost: " +
+    smallUpgradePrice.toString() +
+    " People)<br>Purchased: " +
+    smallUpgradeCount.toString();
 
   mediumTooltip.innerHTML =
-  "2 passive People (Cost: " +
-  mediumUpgradePrice.toString() +
-  " People)<br>Purchased: " +
-  mediumUpgradeCount.toString();
+    "2 passive People (Cost: " +
+    mediumUpgradePrice.toString() +
+    " People)<br>Purchased: " +
+    mediumUpgradeCount.toString();
 
   bigTooltip.innerHTML =
-  "50 passive People (Cost: " +
-  bigUpgradePrice.toString() +
-  " People)<br>Purchased: " +
-  bigUpgradeCount.toString();
+    "50 passive People (Cost: " +
+    bigUpgradePrice.toString() +
+    " People)<br>Purchased: " +
+    bigUpgradeCount.toString();
 }
 
 const buySmallUpgrade = document.createElement("button");
@@ -115,7 +113,6 @@ buySmallUpgrade.addEventListener("mouseout", () => {
 
 app.append(buySmallUpgrade);
 
-
 function updateAutoDisable() {
   buySmallUpgrade.disabled = amount >= smallUpgradePrice ? false : true;
   buyMediumUpgrade.disabled = amount >= mediumUpgradePrice ? false : true;
@@ -138,7 +135,6 @@ buyMediumUpgrade.style.maxWidth = "220px";
 buyMediumUpgrade.style.height = "100px";
 buyMediumUpgrade.style.fontSize = "180%";
 buyMediumUpgrade.style.minWidth = "220px";
-
 
 let mediumUpgradeCount = 0;
 let mediumUpgradePrice = 100;
@@ -187,7 +183,6 @@ buyBigUpgrade.style.maxWidth = "220px";
 buyBigUpgrade.style.height = "100px";
 buyBigUpgrade.style.fontSize = "180%";
 buyBigUpgrade.style.minWidth = "220px";
-
 
 let bigUpgradeCount = 0;
 let bigUpgradePrice = 100;

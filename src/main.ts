@@ -11,7 +11,6 @@ header.innerHTML = gameName;
 app.append(header);
 app.append(subheader);
 
-
 interface Item {
   name: string;
   cost: number;
@@ -109,7 +108,10 @@ function createTooltip(item: Item): HTMLDivElement {
   return tooltip;
 }
 
-function attachTooltipEvents(button: HTMLButtonElement, tooltip: HTMLDivElement) {
+function attachTooltipEvents(
+  button: HTMLButtonElement,
+  tooltip: HTMLDivElement,
+) {
   button.addEventListener("mouseover", (event) => {
     tooltip.style.visibility = "visible";
     tooltip.style.left = event.pageX + 10 + "px";
@@ -121,7 +123,11 @@ function attachTooltipEvents(button: HTMLButtonElement, tooltip: HTMLDivElement)
   });
 }
 
-function attachPurchaseClickEvent(button: HTMLButtonElement, item: Item, tooltip: HTMLDivElement) {
+function attachPurchaseClickEvent(
+  button: HTMLButtonElement,
+  item: Item,
+  tooltip: HTMLDivElement,
+) {
   button.addEventListener("click", () => {
     upgradeCounts[item.name]++;
     amount -= item.cost;

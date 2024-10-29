@@ -2,12 +2,15 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName = "People Clicker";
+const gameName = "Save the human race!";
 document.title = gameName;
-
+const subheader = document.createElement("h3");
+subheader.innerHTML = "Aliens are coming...";
 const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
+app.append(subheader);
+
 
 interface Item {
   name: string;
@@ -65,6 +68,69 @@ const upgradeCounts: { [key: string]: number } = {
 
 const buttons: { [key: string]: HTMLButtonElement } = {};
 
+function getTotalPassiveRate() {
+  return availableItems.reduce((total, item) => {
+    return total + upgradeCounts[item.name] * item.rate;
+  }, 0);
+}
+
+function updateAmount(time: number) {
+  const deltaTime = (time - lastFrameTime) / 1000;
+  lastFrameTime = time;
+
+  const passiveRate = getTotalPassiveRate();
+  amount += passiveRate * deltaTime;
+  counter.innerHTML = "People: " + amount.toFixed(0).toString();
+  passivePeople.innerHTML = "per Second: " + totalPassivePeopleRate.toString();
+  updateAutoDisable();
+  requestAnimationFrame(updateAmount);
+}
+
+function createBuyUpgradeButton(item: Item): HTMLButtonElement {
+  const button = document.createElement("button");
+  button.style.margin = "10px";
+  button.style.width = "220px";
+  button.style.fontSize = "180%";
+  button.style.height = "100px";
+  button.innerHTML = `${item.emoji} ${item.name}`;
+  return button;
+}
+
+function createTooltip(item: Item): HTMLDivElement {
+  const tooltip = document.createElement("div");
+  tooltip.style.position = "absolute";
+  tooltip.style.visibility = "hidden";
+  tooltip.style.backgroundColor = "#242424";
+  tooltip.style.color = "white";
+  tooltip.style.padding = "5px";
+  tooltip.style.borderRadius = "5px";
+  tooltip.style.maxWidth = "400px";
+  tooltip.innerHTML = `Buy ${item.rate} passive People<br>(Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}<br><br>"${item.description}"`;
+  return tooltip;
+}
+
+function attachTooltipEvents(button: HTMLButtonElement, tooltip: HTMLDivElement) {
+  button.addEventListener("mouseover", (event) => {
+    tooltip.style.visibility = "visible";
+    tooltip.style.left = event.pageX + 10 + "px";
+    tooltip.style.top = event.pageY + 10 + "px";
+  });
+
+  button.addEventListener("mouseout", () => {
+    tooltip.style.visibility = "hidden";
+  });
+}
+
+function attachPurchaseClickEvent(button: HTMLButtonElement, item: Item, tooltip: HTMLDivElement) {
+  button.addEventListener("click", () => {
+    upgradeCounts[item.name]++;
+    amount -= item.cost;
+    totalPassivePeopleRate += item.rate;
+    tooltip.innerHTML = `Buy ${item.rate} passive People<br>(Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}<br><br>"${item.description}"`;
+  });
+  buttons[item.name] = button;
+}
+
 const button = document.createElement("button");
 button.innerHTML = "👤";
 button.style.height = "100%";
@@ -84,69 +150,21 @@ app.append(counter);
 
 let lastFrameTime = performance.now();
 
-function getTotalPassiveRate() {
-  return availableItems.reduce((total, item) => {
-    return total + upgradeCounts[item.name] * item.rate;
-  }, 0);
-}
-
-function updateAmount(time: number) {
-  const deltaTime = (time - lastFrameTime) / 1000;
-  lastFrameTime = time;
-
-  const passiveRate = getTotalPassiveRate();
-  amount += passiveRate * deltaTime;
-  counter.innerHTML = "People: " + amount.toFixed(0).toString();
-  passivePeople.innerHTML = "per Second: " + autoClickUpgrades.toString();
-  updateAutoDisable();
-  requestAnimationFrame(updateAmount);
-}
-
 requestAnimationFrame(updateAmount);
 
-let autoClickUpgrades = 0;
+let totalPassivePeopleRate = 0;
 const passivePeople = document.createElement("div");
-passivePeople.innerHTML = "per Second: " + autoClickUpgrades.toString();
+passivePeople.innerHTML = "per Second: " + totalPassivePeopleRate.toString();
 passivePeople.style.fontSize = "16px";
 passivePeople.style.marginBottom = "10px";
 app.append(passivePeople);
 
 availableItems.forEach((item) => {
-  const buyUpgradeButton = document.createElement("button");
-  buyUpgradeButton.style.margin = "10px";
-  buyUpgradeButton.style.width = "220px";
-  buyUpgradeButton.style.fontSize = "180%";
-  buyUpgradeButton.style.height = "100px";
-  buyUpgradeButton.innerHTML = `${item.emoji} ${item.name}`;
+  const buyUpgradeButton = createBuyUpgradeButton(item);
+  const tooltip = createTooltip(item);
 
-  const tooltip = document.createElement("div");
-  tooltip.style.position = "absolute";
-  tooltip.style.visibility = "hidden";
-  tooltip.style.backgroundColor = "#242424";
-  tooltip.style.color = "white";
-  tooltip.style.padding = "5px";
-  tooltip.style.borderRadius = "5px";
-  tooltip.style.maxWidth = "400px";
-
-  tooltip.innerHTML = `Buy ${item.rate} passive People<br>(Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}<br><br>"${item.description}"`;
-
-  buyUpgradeButton.addEventListener("mouseover", (event) => {
-    tooltip.style.visibility = "visible";
-    tooltip.style.left = event.pageX + 10 + "px";
-    tooltip.style.top = event.pageY + 10 + "px";
-  });
-
-  buyUpgradeButton.addEventListener("mouseout", () => {
-    tooltip.style.visibility = "hidden";
-  });
-
-  buyUpgradeButton.addEventListener("click", () => {
-    upgradeCounts[item.name]++;
-    autoClickUpgrades += item.rate;
-    amount -= item.cost; // Deduct the cost from the amount
-    tooltip.innerHTML = `Buy ${item.rate} passive People<br>(Cost: ${item.cost} People)<br>Purchased: ${upgradeCounts[item.name]}<br><br>"${item.description}"`;
-  });
-  buttons[item.name] = buyUpgradeButton;
+  attachTooltipEvents(buyUpgradeButton, tooltip);
+  attachPurchaseClickEvent(buyUpgradeButton, item, tooltip);
 
   app.append(buyUpgradeButton);
   app.append(tooltip);
